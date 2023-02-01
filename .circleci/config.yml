@@ -239,6 +239,8 @@ workflows:
           filters:
             branches:
               only: [main]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - notify_on_success:
       #     requires:
       #       - test-frontend
