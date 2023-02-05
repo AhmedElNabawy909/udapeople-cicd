@@ -1,9 +1,5 @@
 version: 2.1
 
-# orbs:
-  # slack: circleci/slack@4.12.1
-
-
 commands:
   install_awscli:
     description: Install AWS CLI V2
@@ -72,12 +68,6 @@ commands:
               npm run migration:revert
             fi
 
-  # notify_on_failure:
-  #   steps:
-  #     - slack/notify:
-  #         event: fail
-  #         channel: udacity-project
-  #         template: basic_fail_1
 
 jobs:
   build-frontend:
@@ -97,7 +87,6 @@ jobs:
         - save_cache:
             paths: [frontend/node_modules]
             key: frontend-deps
-        # - notify_on_failure
 
   build-backend:
     docker:
@@ -116,7 +105,6 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-deps
-      # - notify_on_failure
 
   test-frontend:
     docker:
@@ -131,7 +119,6 @@ jobs:
             cd frontend
             npm install
             npm run test
-      # - notify_on_failure
                 
   test-backend:
     docker:
@@ -146,7 +133,6 @@ jobs:
             cd backend
             npm install
             npm run test
-      # - notify_on_failure
 
   scan-frontend:
     docker:
@@ -163,7 +149,6 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-      # - notify_on_failure
 
   scan-backend:
     docker:
@@ -181,7 +166,6 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-      # - notify_on_failure
 
   deploy-infrastructure:
     docker:
@@ -418,14 +402,6 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
             fi
 
-  # notify_on_success:
-  #   docker:
-  #     - image: cimg/base:stable
-  #   steps:
-  #     - slack/notify:
-  #         event: pass
-  #         channel: udacity-project
-  #         template: success_tagged_deployment_1
 
 workflows:
   default:
@@ -459,10 +435,5 @@ workflows:
           requires: [smoke-test]
       - cleanup:
           requires: [cloudfront-update]
-      # - notify_on_success:
-      #     requires:
-      #       - test-frontend
-      #       - test-backend
-      #       - scan-frontend 
-      #       - scan-backend   
+   
           
