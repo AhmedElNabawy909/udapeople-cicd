@@ -1,9 +1,4 @@
 URL01:   https://github.com/AhmedElNabawy909/udapeople-cicd
 
-URL02:   http://udapeople-95a9253.s3-website-us-east-1.amazonaws.com
+URL02:   http://udapeople-288173d.s3-website-us-east-1.amazonaws.com
 
-URL03:   d1dsk90tphq0o6.cloudfront.net
-
-URL04:   http://34.197.71.198:3030/api/status
-
-URL05:   http://3.209.81.208:9090/targets?search=
