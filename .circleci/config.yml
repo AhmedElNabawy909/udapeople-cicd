@@ -59,11 +59,11 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<<parameters.Workflow_ID>>)
             # Logic for reverting the database state
             if (( $SUCCESS == 1 ));
             then
-              cd ~/project/backend
+              cd ~/udapeople-cicd/backend
               npm install
               npm run migration:revert
             fi
@@ -336,7 +336,7 @@ jobs:
             export API_URL=http://${BACKEND_PUBLIC_IP}:3030
             if curl -s $API_URL/api/status | grep "ok"
             then
-              exit 0
+              exit 2
             else
               exit 1
             fi
